@@ -4,6 +4,7 @@ import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
 import com.dev.identra.entity.User;
 import com.dev.identra.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class UserController {
 
     @PostMapping
         // @RequestBody map data cua body vao object nay
-    User createUser(@RequestBody UserCreationRequest request) {
+    User createUser(@RequestBody @Valid UserCreationRequest request) {
         return userService.createUser(request);
     }
 
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+    User updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
         return userService.updateUser(userId, request);
     }
 
