@@ -1,6 +1,7 @@
 package com.dev.identra.controller;
 
 import com.dev.identra.dto.request.UserCreationRequest;
+import com.dev.identra.dto.request.UserUpdateRequest;
 import com.dev.identra.entity.User;
 import com.dev.identra.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class UserController {
     @GetMapping("/{userId}")
     User getUser(@PathVariable("userId") String userId) {
         return userService.getUser(userId);
+    }
+
+    @PutMapping("/{userId}")
+    User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+        return userService.updateUser(userId, request);
     }
 
 }
