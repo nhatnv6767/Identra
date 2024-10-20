@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-        // @RequestBody map data cua body vao object nay
+        // @RequestBody -> map data cua body vao object nay
     User createUser(@RequestBody @Valid UserCreationRequest request) {
         return userService.createUser(request);
     }
