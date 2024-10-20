@@ -1,30 +1,13 @@
-package com.dev.identra.entity;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.dev.identra.dto.request;
 
 import java.time.LocalDate;
 
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+public class UserCreationRequest {
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private LocalDate dob;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
