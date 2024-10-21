@@ -1,5 +1,6 @@
 package com.dev.identra.controller;
 
+import com.dev.identra.dto.request.ApiResponse;
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
 import com.dev.identra.entity.User;
@@ -18,8 +19,11 @@ public class UserController {
 
     @PostMapping
         // @RequestBody -> map data cua body vao object nay
-    User createUser(@RequestBody @Valid UserCreationRequest request) {
-        return userService.createUser(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(userService.createUser(request));
+        return apiResponse;
     }
 
     @GetMapping
