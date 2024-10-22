@@ -1,9 +1,11 @@
 package com.dev.identra.controller;
 
+import com.dev.identra.dto.request.ApiResponse;
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
 import com.dev.identra.entity.User;
 import com.dev.identra.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +18,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-        // @RequestBody map data cua body vao object nay
-    User createUser(@RequestBody UserCreationRequest request) {
-        return userService.createUser(request);
+        // @RequestBody -> map data cua body vao object nay
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+
+        apiResponse.setResult(userService.createUser(request));
+        return apiResponse;
     }
 
     @GetMapping
@@ -32,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+    User updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
         return userService.updateUser(userId, request);
     }
 
