@@ -3,6 +3,7 @@ package com.dev.identra.controller;
 import com.dev.identra.dto.request.ApiResponse;
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
+import com.dev.identra.dto.response.UserResponse;
 import com.dev.identra.entity.User;
 import com.dev.identra.service.UserService;
 import jakarta.validation.Valid;
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    User getUser(@PathVariable("userId") String userId) {
+    UserResponse getUser(@PathVariable("userId") String userId) {
         return userService.getUser(userId);
     }
 

@@ -2,6 +2,7 @@ package com.dev.identra.service;
 
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
+import com.dev.identra.dto.response.UserResponse;
 import com.dev.identra.entity.User;
 import com.dev.identra.exception.AppException;
 import com.dev.identra.exception.ErrorCode;
@@ -43,8 +44,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUser(String userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserResponse getUser(String userId) {
+        return userMapper.toUserResponse(userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found")));
     }
 
 
