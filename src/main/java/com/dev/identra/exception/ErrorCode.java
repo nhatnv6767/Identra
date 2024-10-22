@@ -2,7 +2,8 @@ package com.dev.identra.exception;
 
 public enum ErrorCode {
     UNCATEGORIZED_EXCEPTION(9999, "Something went wrong - UNCATEGORIZED_EXCEPTION"),
-    USER_EXISTED(1002, "Username already exists");
+    USER_EXISTED(1002, "Username already exists"),
+    USERNAME_INVALID(1003, "Username must be at least 3 characters");
 
 
     private int code;
