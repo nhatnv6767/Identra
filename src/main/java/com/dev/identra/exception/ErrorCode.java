@@ -1,7 +1,8 @@
 package com.dev.identra.exception;
 
 public enum ErrorCode {
-    USER_EXISTED(1001, "Username already exists");
+    UNCATEGORIZED_EXCEPTION(9999, "Something went wrong - UNCATEGORIZED_EXCEPTION"),
+    USER_EXISTED(1002, "Username already exists");
 
 
     private int code;
