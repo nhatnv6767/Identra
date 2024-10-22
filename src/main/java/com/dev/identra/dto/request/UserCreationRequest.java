@@ -1,14 +1,13 @@
 package com.dev.identra.dto.request;
 
 import jakarta.validation.constraints.Size;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserCreationRequest {
     // yêu cầu truyền vào 1 constant - chính là key của ErrorCode (enum)
