@@ -8,7 +8,7 @@ public class UserCreationRequest {
     // yêu cầu truyền vào 1 constant - chính là key của ErrorCode (enum)
     @Size(min = 3, message = "USERNAME_INVALID")
     private String username;
-    @Size(min = 8, message = "INVALID_PASSWORD")
+    @Size(min = 8, message = "INVALID_PASSWORD_")
     private String password;
     private String firstName;
     private String lastName;
