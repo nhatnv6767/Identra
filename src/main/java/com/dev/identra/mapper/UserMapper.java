@@ -2,6 +2,7 @@ package com.dev.identra.mapper;
 
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
+import com.dev.identra.dto.response.UserResponse;
 import com.dev.identra.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -12,6 +13,8 @@ import org.mapstruct.MappingTarget;
 public interface UserMapper {
     // nhận về 1 cái parameter là request theo kiểu là UserCreationRequest và nó sẽ trả về 1 class là User
     User toUser(UserCreationRequest request);
+
+    UserResponse toUserResponse(User user);
 
     // map data từ UserUpdateRequest vào Object User
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
