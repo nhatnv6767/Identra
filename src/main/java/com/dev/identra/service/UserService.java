@@ -24,6 +24,7 @@ public class UserService {
         }
 
         UserCreationRequest request1 = new UserCreationRequest();
+        request1.setUsername("");
 
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
