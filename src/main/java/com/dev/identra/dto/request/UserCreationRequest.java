@@ -1,6 +1,7 @@
 package com.dev.identra.dto.request;
 
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Data
+@Builder
 public class UserCreationRequest {
     // yêu cầu truyền vào 1 constant - chính là key của ErrorCode (enum)
     @Size(min = 3, message = "USERNAME_INVALID")

@@ -23,6 +23,8 @@ public class UserService {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
+        UserCreationRequest request1 = new UserCreationRequest();
+
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
         user.setFirstName(request.getFirstName());
