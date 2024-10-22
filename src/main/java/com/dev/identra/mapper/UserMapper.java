@@ -16,7 +16,7 @@ public interface UserMapper {
     User toUser(UserCreationRequest request);
 
     // khi property khac nhau
-    @Mapping(source = "firstName", target = "lastName")
+    @Mapping(target = "lastName", ignore = true)
     UserResponse toUserResponse(User user);
 
     // map data từ UserUpdateRequest vào Object User
