@@ -29,8 +29,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(String userId, UserUpdateRequest request) {
-        User user = getUser(userId);
+    public UserResponse updateUser(String userId, UserUpdateRequest request) {
+        User user = userRepository.findById(userId);
         userMapper.updateUser(user, request);
 
         return userRepository.save(user);
