@@ -30,11 +30,8 @@ public class UserService {
 
     public User updateUser(String userId, UserUpdateRequest request) {
         User user = getUser(userId);
+        userMapper.updateUser(user, request);
 
-        user.setPassword(request.getPassword());
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setDob(request.getDob());
         return userRepository.save(user);
     }
 
