@@ -1,7 +1,12 @@
 package com.dev.identra.exception;
 
 public enum ErrorCode {
-    USER_EXISTED(1001, "Username already exists");
+    UNCATEGORIZED_EXCEPTION(9999, "Something went wrong - UNCATEGORIZED_EXCEPTION"),
+    INVALID_KEY(1001, "Something went wrong - UNCATEGORIZED_EXCEPTION"),
+    USER_EXISTED(1002, "Username already exists"),
+    USERNAME_INVALID(1003, "Username must be at least 3 characters"),
+    INVALID_PASSWORD(1004, "Password must be at least 8 characters"),
+    ;
 
 
     private int code;

@@ -3,9 +3,13 @@ package com.dev.identra.controller;
 import com.dev.identra.dto.request.ApiResponse;
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
+import com.dev.identra.dto.response.UserResponse;
 import com.dev.identra.entity.User;
 import com.dev.identra.service.UserService;
 import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +17,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
-    @Autowired
-    private UserService userService;
+    UserService userService;
 
     @PostMapping
         // @RequestBody -> map data cua body vao object nay
@@ -33,12 +38,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    User getUser(@PathVariable("userId") String userId) {
+    UserResponse getUser(@PathVariable("userId") String userId) {
         return userService.getUser(userId);
     }
 
     @PutMapping("/{userId}")
-    User updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
+    UserResponse updateUser(@PathVariable String userId, @RequestBody @Valid UserUpdateRequest request) {
         return userService.updateUser(userId, request);
     }
 
