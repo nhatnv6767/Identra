@@ -17,7 +17,7 @@ public class AuthenticationService {
     UserRepository userRepository;
 
     boolean authenticate(AuthenticationRequest request) {
-        var user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> AppException(ErrorCode.));
+        var user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
     }
 }
