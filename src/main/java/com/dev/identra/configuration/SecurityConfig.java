@@ -32,6 +32,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(
+                // dang ky 1 provierManager, 1 authentication provider de support cho jwt token
+                // thi khi thuc hien validate jwt do thi ta can jwt decoder
                 oauth2 ->
                         oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()))
         );
