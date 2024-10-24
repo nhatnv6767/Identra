@@ -39,7 +39,11 @@ public class AuthenticationService {
         if (!authenticated) {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
-
+        var token = generateToken(request.getUsername());
+        return AuthenticationResponse.builder()
+                .token(token)
+                .authenticated(true)
+                .build();
 
     }
 
