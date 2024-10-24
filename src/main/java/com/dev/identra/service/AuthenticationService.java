@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,8 @@ public class AuthenticationService {
     UserRepository userRepository;
     // dung nonfinal de ko inject vao constructor
     @NonFinal
-    protected static final String SIGNER_KEY = "oXDMaLLDpz39llKa6iwNfnAIwK1c79jcG7sqkfE/UZkKwx6MHO5YPGu72xn+zRUh";
+    @Value("${jwt.signerKey}")
+    protected static String SIGNER_KEY;
 
     public IntrospectResponse introspect(IntrospectRequest request) throws ParseException, JOSEException {
         var token = request.getToken();
