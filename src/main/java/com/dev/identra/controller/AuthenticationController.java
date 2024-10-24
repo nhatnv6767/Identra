@@ -2,7 +2,9 @@ package com.dev.identra.controller;
 
 import com.dev.identra.dto.request.ApiResponse;
 import com.dev.identra.dto.request.AuthenticationRequest;
+import com.dev.identra.dto.request.IntrospectRequest;
 import com.dev.identra.dto.response.AuthenticationResponse;
+import com.dev.identra.dto.response.IntrospectResponse;
 import com.dev.identra.entity.User;
 import com.dev.identra.service.AuthenticationService;
 import lombok.AccessLevel;
@@ -26,6 +28,15 @@ public class AuthenticationController {
     ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         var result = authenticationService.authenticate(request);
         return ApiResponse.<AuthenticationResponse>builder()
+                .result(result)
+
+                .build();
+    }
+
+    @PostMapping("/introspect")
+    ApiResponse<IntrospectResponse> authenticate(@RequestBody IntrospectRequest request) {
+        var result = authenticationService.authenticate(request);
+        return ApiResponse.<IntrospectResponse>builder()
                 .result(result)
 
                 .build();
