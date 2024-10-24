@@ -37,7 +37,7 @@ public class AuthenticationService {
     // dung nonfinal de ko inject vao constructor
     @NonFinal
     @Value("${jwt.signerKey}")
-    protected static String SIGNER_KEY;
+    protected String SIGNER_KEY;
 
     public IntrospectResponse introspect(IntrospectRequest request) throws ParseException, JOSEException {
         var token = request.getToken();
