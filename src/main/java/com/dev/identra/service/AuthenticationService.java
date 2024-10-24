@@ -53,13 +53,13 @@ public class AuthenticationService {
                 // dai dien cho user dang nhap
                 .subject(username)
                 // chi dinh token issue tu ai?
-                .issuer("dev.identra")
+                .issuer("bh.none")
                 .issueTime(new Date())
                 // het han sau 1 h
                 .expirationTime(new Date(
                         Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
                 ))
-                .claim("customClaim", "Custom")
+                .claim("userId", "Custom")
                 .build();
         // payload nhan vao JSONObject
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -69,6 +69,7 @@ public class AuthenticationService {
         // can 1 chuoi 32 bytes -> https://generate-random.org/encryption-key-generator
         try {
             jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
+            // serialize xuong theo kieu String
             return jwsObject.serialize();
         } catch (JOSEException e) {
             log.error("Cannot create token", e);
