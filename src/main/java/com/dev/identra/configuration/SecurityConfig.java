@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.crypto.spec.SecretKeySpec;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -36,6 +38,8 @@ public class SecurityConfig {
 
     @Bean
     JwtDecoder jwtDecoder() {
-        NimbusJwtDecoder
+        SecretKeySpec secretKeySpec = new SecretKeySpec("")
+
+        return NimbusJwtDecoder.withSecretKey();
     }
 }
