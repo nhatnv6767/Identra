@@ -18,6 +18,8 @@ public class SecurityConfig {
                 request.requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .anyRequest().authenticated());
 
+        httpSecurity.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
+
         return httpSecurity.build();
     }
 }
