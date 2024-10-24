@@ -85,11 +85,12 @@
             <artifactId>spring-security-crypto</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server -->
+        <!--        https://docs.spring.io/spring-security/reference/servlet/architecture.html-->
         <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.40</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+            <version>3.3.4</version>
         </dependency>
 
 
