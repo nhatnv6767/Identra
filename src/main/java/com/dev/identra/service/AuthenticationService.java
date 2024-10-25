@@ -65,7 +65,7 @@ public class AuthenticationService {
         if (!authenticated) {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
-        var token = generateToken(request.getUsername());
+        var token = generateToken(user);
         return AuthenticationResponse.builder()
                 .token(token)
                 .authenticated(true)
@@ -85,7 +85,7 @@ public class AuthenticationService {
                 .expirationTime(new Date(
                         Instant.now().plus(60, ChronoUnit.HOURS).toEpochMilli()
                 ))
-                .claim("scope", "Custom")
+                .claim("scope", buildScope(user))
                 .build();
         // payload nhan vao JSONObject
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -108,7 +108,8 @@ public class AuthenticationService {
         // phan cach bang dau space
         StringJoiner stringJoiner = new StringJoiner(" ");
         if (!CollectionUtils.isEmpty(user.getRoles())) {
-            user.getRoles().forEach(s -> stringJoiner.add(s));
+            user.getRoles().forEach(stringJoiner::add);
         }
+        return stringJoiner.toString();
     }
 }
