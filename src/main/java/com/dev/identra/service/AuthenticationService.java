@@ -83,7 +83,7 @@ public class AuthenticationService {
                 .issueTime(new Date())
                 // het han sau 1 h
                 .expirationTime(new Date(
-                        Instant.now().plus(60, ChronoUnit.HOURS).toEpochMilli()
+                        Instant.now().plus(600, ChronoUnit.HOURS).toEpochMilli()
                 ))
                 .claim("scope", buildScope(user))
                 .build();
