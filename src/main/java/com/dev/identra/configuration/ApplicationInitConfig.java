@@ -42,3 +42,6 @@ public class ApplicationInitConfig {
         };
     }
 }
+
+
+// https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html
