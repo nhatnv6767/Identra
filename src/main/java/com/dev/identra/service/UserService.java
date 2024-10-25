@@ -13,8 +13,8 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -59,13 +59,15 @@ public class UserService {
 
     // tạo 1 proxy trước hàm này, kiểm tra trước lu gọi hàm thì phải có role = admin
     @PreAuthorize("hasRole('ADMIN')")
-    public List<UserResponse> getUsers() {
+    public List<User> getUsers() {
         log.info("In method get Users");
-        return userRepository.findAll().stream().map(userMapper::toUserResponse).toList();
+        return userRepository.findAll();
     }
 
+    @PostAuthorize("hasRole('ADMIN')")
     public UserResponse getUser(String userId) {
-        return userMapper.toUserResponse(userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found")));
+        log.info("In method get User by ID");
+        return userMapper.toUserResponse(userRepository.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
     }
 
 
