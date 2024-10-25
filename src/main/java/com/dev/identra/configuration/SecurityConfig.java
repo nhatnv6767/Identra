@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,6 +22,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final String[] PUBLIC_ENDPOINTS = {"/users", "/auth/token", "/auth/introspect"};
@@ -34,10 +36,7 @@ public class SecurityConfig {
         // phai public de nguoi dung co the vao dang ky
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
-                        // phai co scope admin moi truy cap vao duoc phuong thuc get all users
-                        .requestMatchers(HttpMethod.GET, "/users")
-                        // phan quyen chi co admin moi co quyen truy cap
-                        .hasRole(Role.ADMIN.name())
+
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(
