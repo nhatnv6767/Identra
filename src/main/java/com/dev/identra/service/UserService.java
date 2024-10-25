@@ -71,9 +71,9 @@ public class UserService {
 
     // tạo 1 proxy trước hàm này, kiểm tra trước lúc gọi hàm thì phải có role = admin
     @PreAuthorize("hasRole('ADMIN')")
-    public List<User> getUsers() {
+    public List<UserResponse> getUsers() {
         log.info("In method get Users");
-        return userRepository.findAll();
+        return userRepository.findAll().stream().map(userMapper::toUserResponse).toList();
     }
 
     // cái này sẽ chặn sau khi cái method được thực hiện xong
