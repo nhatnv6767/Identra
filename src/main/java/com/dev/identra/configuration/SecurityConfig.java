@@ -31,6 +31,8 @@ public class SecurityConfig {
         // phai public de nguoi dung co the vao dang ky
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+                        // phai co scope admin moi truy cap vao duoc phuong thuc get all users
+                        .requestMatchers(HttpMethod.GET, "/users").hasAnyAuthority("SCOPE_ADMIN")
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(
