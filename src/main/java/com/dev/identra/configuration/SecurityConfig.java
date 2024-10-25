@@ -35,7 +35,9 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
                         // phai co scope admin moi truy cap vao duoc phuong thuc get all users
-                        .requestMatchers(HttpMethod.GET, "/users").hasRole(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/users")
+                        // phan quyen chi co admin moi co quyen truy cap
+                        .hasRole(Role.ADMIN.name())
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(
