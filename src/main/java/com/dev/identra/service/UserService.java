@@ -67,7 +67,8 @@ public class UserService {
     // cái này sẽ chặn sau khi cái method được thực hiện xong
     // nếu thoả điều kiện trong Post thi kết quả của method dược return về, còn ko thì bị chặn lại
     // https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html
-    @PostAuthorize("hasRole('ADMIN')")
+    // returnObject chính là UserResponse mà chúng ta trả về, kiểm tra nếu username của response trả về = username đang đăng nhập
+    @PostAuthorize("returnObject.username == authentication.name")
     public UserResponse getUser(String userId) {
         log.info("In method get User by ID");
         return userMapper.toUserResponse(userRepository.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
