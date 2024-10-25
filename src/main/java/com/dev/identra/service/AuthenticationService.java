@@ -5,6 +5,7 @@ import com.dev.identra.dto.request.IntrospectRequest;
 import com.dev.identra.dto.response.AuthenticationResponse;
 import com.dev.identra.dto.response.IntrospectResponse;
 import com.dev.identra.dto.response.UserResponse;
+import com.dev.identra.entity.User;
 import com.dev.identra.exception.AppException;
 import com.dev.identra.exception.ErrorCode;
 import com.dev.identra.repository.UserRepository;
@@ -22,11 +23,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.StringJoiner;
 
 @Service
 @RequiredArgsConstructor
@@ -70,11 +73,11 @@ public class AuthenticationService {
 
     }
 
-    private String generateToken(String username) {
+    private String generateToken(User user) {
         JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
                 // dai dien cho user dang nhap
-                .subject(username)
+                .subject(user.getUsername())
                 // chi dinh token issue tu ai?
                 .issuer("bh.none")
                 .issueTime(new Date())
@@ -82,7 +85,7 @@ public class AuthenticationService {
                 .expirationTime(new Date(
                         Instant.now().plus(60, ChronoUnit.HOURS).toEpochMilli()
                 ))
-                .claim("userId", "Custom")
+                .claim("scope", "Custom")
                 .build();
         // payload nhan vao JSONObject
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -99,5 +102,13 @@ public class AuthenticationService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private String buildScope(User user) {
+        // phan cach bang dau space
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        if (!CollectionUtils.isEmpty(user.getRoles())) {
+            user.getRoles().forEach(s -> stringJoiner.add(s));
+        }
     }
 }
