@@ -57,13 +57,15 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
-    // tạo 1 proxy trước hàm này, kiểm tra trước lu gọi hàm thì phải có role = admin
+    // tạo 1 proxy trước hàm này, kiểm tra trước lúc gọi hàm thì phải có role = admin
     @PreAuthorize("hasRole('ADMIN')")
     public List<User> getUsers() {
         log.info("In method get Users");
         return userRepository.findAll();
     }
 
+    // cái này sẽ chặn sau khi cái method được thực hiện xong
+    // nếu thoả điều kiện trong Post thi kết quả của method dược return về, còn ko thì bị chặn lại
     @PostAuthorize("hasRole('ADMIN')")
     public UserResponse getUser(String userId) {
         log.info("In method get User by ID");
