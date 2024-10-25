@@ -66,6 +66,7 @@ public class UserService {
 
     // cái này sẽ chặn sau khi cái method được thực hiện xong
     // nếu thoả điều kiện trong Post thi kết quả của method dược return về, còn ko thì bị chặn lại
+    // https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html
     @PostAuthorize("hasRole('ADMIN')")
     public UserResponse getUser(String userId) {
         log.info("In method get User by ID");
