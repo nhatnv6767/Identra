@@ -1,5 +1,6 @@
 package com.dev.identra.configuration;
 
+import com.dev.identra.enums.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +35,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
                         // phai co scope admin moi truy cap vao duoc phuong thuc get all users
-                        .requestMatchers(HttpMethod.GET, "/users").hasAnyAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users").hasRole(Role.ADMIN.name())
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(
