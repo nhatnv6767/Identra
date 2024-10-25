@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -39,12 +40,21 @@ public class SecurityConfig {
                 // dang ky 1 provierManager, 1 authentication provider de support cho jwt token
                 // thi khi thuc hien validate jwt do thi ta can jwt decoder
                 oauth2 ->
-                        oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()))
+                        oauth2.jwt(jwtConfigurer ->
+                                jwtConfigurer.decoder(jwtDecoder())
+                                        .jwtAuthenticationConverter()
+                        )
         );
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
 
         return httpSecurity.build();
+    }
+
+    @Bean
+    JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        return jwtAuthenticationConverter;
     }
 
     @Bean
