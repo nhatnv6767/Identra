@@ -4,7 +4,6 @@ import com.dev.identra.dto.request.AuthenticationRequest;
 import com.dev.identra.dto.request.IntrospectRequest;
 import com.dev.identra.dto.response.AuthenticationResponse;
 import com.dev.identra.dto.response.IntrospectResponse;
-import com.dev.identra.dto.response.UserResponse;
 import com.dev.identra.entity.User;
 import com.dev.identra.exception.AppException;
 import com.dev.identra.exception.ErrorCode;
@@ -23,7 +22,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
