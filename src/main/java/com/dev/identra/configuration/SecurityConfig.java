@@ -44,9 +44,11 @@ public class SecurityConfig {
                 // thi khi thuc hien validate jwt do thi ta can jwt decoder
                 oauth2 ->
                         oauth2.jwt(jwtConfigurer ->
-                                jwtConfigurer.decoder(jwtDecoder())
-                                        .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                        )
+                                        jwtConfigurer.decoder(jwtDecoder())
+                                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                                )
+                                // enpoint khi authentication failure
+                                .authenticationEntryPoint()
         );
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
