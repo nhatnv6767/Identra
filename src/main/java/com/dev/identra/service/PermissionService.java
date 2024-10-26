@@ -1,5 +1,8 @@
 package com.dev.identra.service;
 
+import com.dev.identra.dto.request.PermissionRequest;
+import com.dev.identra.dto.response.PermissionResponse;
+import com.dev.identra.entity.Permission;
 import com.dev.identra.repository.PermissionRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class PermissionService {
     PermissionRepository permissionRepository;
 
-    Object create(Object request) {
-
+    PermissionResponse create(PermissionRequest request) {
+        Permission permission;
     }
 }
