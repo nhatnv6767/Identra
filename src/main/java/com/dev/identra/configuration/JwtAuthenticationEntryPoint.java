@@ -32,5 +32,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         ObjectMapper objectMapper = new ObjectMapper();
         // vi trong write yeu cau 1 string ma cua chung ta hien tai dang la 1 object -> convert object to JSON
         response.getWriter().write(objectMapper.writeValueAsString(apiResponse));
+        // force viec gui request ve cho client
+        response.flushBuffer();
     }
 }
