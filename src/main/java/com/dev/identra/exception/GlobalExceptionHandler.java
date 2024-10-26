@@ -2,9 +2,11 @@ package com.dev.identra.exception;
 
 import com.dev.identra.dto.request.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
 
 // @ControllerAdvice Tập trung quản lý các Exception
 @ControllerAdvice
@@ -26,6 +28,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(errorCode.getStatusCode())
                 .body(apiResponse);
+    }
+
+    @ExceptionHandler(value = AccessDeniedException.class)
+    ResponseEntity<ApiResponse> handlingAccessDeniedException(AccessDeniedException exception) {
+        ErrorCode errorCode = ErrorCode.UNAUTHORIZED;
+
+        return ResponseEntity.status(errorCode.getStatusCode()).body(
+                ApiResponse.builder()
+                        .code(errorCode.getCode())
+                        .message(errorCode.getMessage())
+                        .build()
+        );
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
