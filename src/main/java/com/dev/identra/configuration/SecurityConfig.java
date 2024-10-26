@@ -48,7 +48,7 @@ public class SecurityConfig {
                                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
                                 )
                                 // enpoint khi authentication failure
-                                .authenticationEntryPoint()
+                                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
         );
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
