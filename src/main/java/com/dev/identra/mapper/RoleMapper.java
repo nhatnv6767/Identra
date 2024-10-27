@@ -1,6 +1,7 @@
 package com.dev.identra.mapper;
 
 import com.dev.identra.dto.request.PermissionRequest;
+import com.dev.identra.dto.request.RoleRequest;
 import com.dev.identra.dto.response.PermissionResponse;
 import com.dev.identra.dto.response.RoleResponse;
 import com.dev.identra.entity.Permission;
@@ -15,7 +16,7 @@ public interface RoleMapper {
     // nhận về 1 cái parameter là request theo kiểu là UserCreationRequest và nó sẽ trả về 1 class là User
     // khi map se ignore cai entry permissions
     @Mapping(target = "permissions", ignore = true)
-    Role toRole(Role request);
+    Role toRole(RoleRequest request);
 
     // khi property khac nhau
 //    @Mapping(target = "lastName", ignore = true)
