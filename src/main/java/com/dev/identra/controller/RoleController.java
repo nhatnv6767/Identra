@@ -1,11 +1,8 @@
 package com.dev.identra.controller;
 
 import com.dev.identra.dto.request.ApiResponse;
-import com.dev.identra.dto.request.PermissionRequest;
 import com.dev.identra.dto.request.RoleRequest;
-import com.dev.identra.dto.response.PermissionResponse;
 import com.dev.identra.dto.response.RoleResponse;
-import com.dev.identra.service.PermissionService;
 import com.dev.identra.service.RoleService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
