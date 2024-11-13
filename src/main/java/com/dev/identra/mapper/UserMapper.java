@@ -24,6 +24,7 @@ public interface UserMapper {
     UserResponse toUserResponse(User user);
 
     // map data từ UserUpdateRequest vào Object User
+    @Mapping(target = "roles", ignore = true)
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
 
     default String map(Role role) {
