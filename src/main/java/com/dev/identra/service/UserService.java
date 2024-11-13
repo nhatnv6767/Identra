@@ -8,6 +8,7 @@ import com.dev.identra.enums.Role;
 import com.dev.identra.exception.AppException;
 import com.dev.identra.exception.ErrorCode;
 import com.dev.identra.mapper.UserMapper;
+import com.dev.identra.repository.RoleRepository;
 import com.dev.identra.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ import java.util.Optional;
 public class UserService {
     // tuong duong Autowired, private final
     UserRepository userRepository;
+    RoleRepository roleRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
 
@@ -61,6 +63,10 @@ public class UserService {
     public UserResponse updateUser(String userId, UserUpdateRequest request) {
         User user = userRepository.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         userMapper.updateUser(user, request);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        var roles = roleRepository.findAllById(request.getRoles());
+        user.setRoles(new HashSet<>(roles));
 
         return userMapper.toUserResponse(userRepository.save(user));
     }
