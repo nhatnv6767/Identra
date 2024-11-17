@@ -76,7 +76,8 @@ public class UserService {
     }
 
     // tạo 1 proxy trước hàm này, kiểm tra trước lúc gọi hàm thì phải có role = admin
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') && hasAuthority('APPROVE_POST')")
     public List<UserResponse> getUsers() {
         log.info("In method get Users");
         return userRepository.findAll().stream().map(userMapper::toUserResponse).toList();
