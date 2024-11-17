@@ -15,6 +15,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface DobConstraint {
     String message() default "Invalid date of birth";
 
+    int min();
+
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
