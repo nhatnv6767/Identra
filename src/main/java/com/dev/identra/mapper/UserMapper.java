@@ -26,14 +26,6 @@ public interface UserMapper {
     // map data từ UserUpdateRequest vào Object User
     @Mapping(target = "roles", ignore = true)
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
-
-    default String map(Role role) {
-        return role.getName();
-    }
-
-    default Set<String> map(Set<Role> roles) {
-        return roles.stream().map(this::map).collect(Collectors.toSet());
-    }
-
+    
 
 }
