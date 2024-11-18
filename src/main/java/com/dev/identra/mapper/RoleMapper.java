@@ -1,10 +1,7 @@
 package com.dev.identra.mapper;
 
-import com.dev.identra.dto.request.PermissionRequest;
 import com.dev.identra.dto.request.RoleRequest;
-import com.dev.identra.dto.response.PermissionResponse;
 import com.dev.identra.dto.response.RoleResponse;
-import com.dev.identra.entity.Permission;
 import com.dev.identra.entity.Role;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
