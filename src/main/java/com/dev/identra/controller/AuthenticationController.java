@@ -5,7 +5,6 @@ import com.dev.identra.dto.request.AuthenticationRequest;
 import com.dev.identra.dto.request.IntrospectRequest;
 import com.dev.identra.dto.response.AuthenticationResponse;
 import com.dev.identra.dto.response.IntrospectResponse;
-import com.dev.identra.entity.User;
 import com.dev.identra.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
 import lombok.AccessLevel;

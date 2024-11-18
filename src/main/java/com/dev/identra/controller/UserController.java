@@ -4,7 +4,6 @@ import com.dev.identra.dto.request.ApiResponse;
 import com.dev.identra.dto.request.UserCreationRequest;
 import com.dev.identra.dto.request.UserUpdateRequest;
 import com.dev.identra.dto.response.UserResponse;
-import com.dev.identra.entity.User;
 import com.dev.identra.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
